@@ -1,4 +1,5 @@
 sunxi-can-driver
 ================
 
-sunxi can driver use socketcan
+sunxi CAN controller driver use socketcan
+refer to the SJA1000 driver
