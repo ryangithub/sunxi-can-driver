@@ -310,9 +310,9 @@ static void sun7i_can_rx(struct net_device *dev)
 	cf->can_dlc = get_can_dlc(fi & 0x0F);
 	if (fi >> 7) {
 		/* extended frame format (EFF) */
-		id = (readl(CAN_BUF1_ADDR) << 21)	//id28~21
-		    | (readl(CAN_BUF2_ADDR) << 13)	//id20~13
-		    | (readl(CAN_BUF3_ADDR) << 5)	//id12~5
+		id = (readl(CAN_BUF1_ADDR) << 21)		//id28~21
+		    | (readl(CAN_BUF2_ADDR) << 13)		//id20~13
+		    | (readl(CAN_BUF3_ADDR) << 5)		//id12~5
 		    | ((readl(CAN_BUF4_ADDR) >> 3) & 0x1f);	//id4~0
 		id |= CAN_EFF_FLAG;
 
@@ -324,7 +324,7 @@ static void sun7i_can_rx(struct net_device *dev)
 		}
 	} else {
 		/* standard frame format (SFF) */
-		id = (readl(CAN_BUF1_ADDR) << 3)	//id28~21
+		id = (readl(CAN_BUF1_ADDR) << 3)		//id28~21
 		    | ((readl(CAN_BUF2_ADDR) >> 5) & 0x7);	//id20~18
 
 		if ((fi >> 6) & 0x1) {	/* remote transmission request */
