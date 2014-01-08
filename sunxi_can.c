@@ -464,7 +464,7 @@ irqreturn_t sun7i_can_interrupt(int irq, void *dev_id)
 	printk(KERN_INFO "sun7ican: capture a interrupt\n");
 
 	/* Shared interrupts and IRQ off? */
-	if ((readl(CAN_INT_ADDR) & 0xF) == 0x0)
+	if ((readl(CAN_INT_ADDR) & 0xFF) == 0x0)
 		return IRQ_NONE;
 
 	while ((isrc = readl(CAN_INT_ADDR)) && (n < SUN7I_CAN_MAX_IRQ)) {
@@ -502,7 +502,6 @@ irqreturn_t sun7i_can_interrupt(int irq, void *dev_id)
 
 		//clear the interrupt
 		writel(isrc, CAN_INT_ADDR);
-		udelay(10);
 	}
 
 	if (n >= SUN7I_CAN_MAX_IRQ)
